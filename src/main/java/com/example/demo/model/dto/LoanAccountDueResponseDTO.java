@@ -8,6 +8,6 @@ import lombok.*;
 @Builder
 public class LoanAccountDueResponseDTO {
     private String loanAccountNumber;
-    private String dueDate;    // You can use LocalDate too
+    private String dueDate;
     private Double emiAmount;
 }

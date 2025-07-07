@@ -71,7 +71,7 @@ public class LoanAccountService {
                             .emiAmount(emiDTO.getEmiAmount())
                             .paidStatus(emiDTO.isPaidStatus())
                             .dueStatus(emiDTO.isDueStatus())
-                            .loanAccount(loanAccountEntity)  // set back reference here
+                            .loanAccount(loanAccountEntity)
                             .build();
                     return emiEntity;
                 })

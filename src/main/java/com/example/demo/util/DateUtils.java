@@ -24,7 +24,7 @@ public class DateUtils {
             return nextMonthMid.format(DateTimeFormatter.ISO_LOCAL_DATE); // "2024-05-15"
         } catch (Exception e) {
             logger.error("Parsing error in recieved Dateformat" + e.getMessage() );
-            return "2024-05-15"; // Fallback value in case of parsing error
+            return ""; // empty date in case  not able to parse
         }
     }
 }
