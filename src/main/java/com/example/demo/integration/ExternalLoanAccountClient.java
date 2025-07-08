@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 @RequiredArgsConstructor
 public class ExternalLoanAccountClient {
 
-    private static final RestTemplate restTemplate = new RestTemplate();
+    private final RestTemplate restTemplate ;
 
     private static final String EXTERNAL_API_URL = "http://demo9993930.mockable.io/loanaccount/1";
 
