@@ -28,4 +28,15 @@ public class EmiDetailEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "loan_account_number")
     private LoanAccountEntity loanAccount;
+
+    @Override
+    public String toString() {
+        return "EmiDetailEntity{" +
+                "id=" + id +
+                ", month='" + month + '\'' +
+                ", emiAmount=" + emiAmount +
+                ", paidStatus=" + paidStatus +
+                ", dueStatus=" + dueStatus +
+                '}';
+    }
 }

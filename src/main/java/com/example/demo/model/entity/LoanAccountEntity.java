@@ -21,4 +21,11 @@ public class LoanAccountEntity {
      //One LoanAccount has many EmiDetails
     @OneToMany(mappedBy = "loanAccount", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<EmiDetailEntity> emiDetails;
+
+    @Override
+    public String toString() {
+        return "LoanAccountEntity{" +
+                "loanAccountNumber=" + loanAccountNumber +
+                '}';
+    }
 }
