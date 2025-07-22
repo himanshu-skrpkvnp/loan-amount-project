@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.dto.LoanAccountDueResponseDTO;
 import com.example.demo.service.LoanAccountService;
+import com.example.demo.util.BLException;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +18,7 @@ public class LoanAccountController {
 
 
     @GetMapping("/{accountNumber}")
-    public LoanAccountDueResponseDTO getLoanAccount(@PathVariable Long accountNumber) {
+    public LoanAccountDueResponseDTO getLoanAccount(@PathVariable Long accountNumber) throws BLException {
         logger.info("Received request for loan account: {}", accountNumber);
         LoanAccountDueResponseDTO response = loanAccountService.processLoanAccount(accountNumber);
         logger.info("Returning response to source: {}", response);

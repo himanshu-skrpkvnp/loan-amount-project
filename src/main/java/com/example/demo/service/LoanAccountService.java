@@ -7,6 +7,7 @@ import com.example.demo.model.dto.LoanAccountResponseDTO;
 import com.example.demo.model.entity.EmiDetailEntity;
 import com.example.demo.model.entity.LoanAccountEntity;
 import com.example.demo.repository.LoanAccountRepository;
+import com.example.demo.util.BLException;
 import com.example.demo.util.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
@@ -25,16 +26,20 @@ public class LoanAccountService {
     private static final Logger logger = LoggerFactory.getLogger(LoanAccountService.class);
     private final LoanAccountRepository loanAccountRepository;
 
-    public LoanAccountDueResponseDTO processLoanAccount(Long accountNumber) {
+    public LoanAccountDueResponseDTO processLoanAccount(Long accountNumber) throws BLException {
         // Call external API
         LoanAccountResponseDTO response = externalClient.fetchLoanAccountFromExternalApi(accountNumber);
+
+        // reject the transaction if some exception occurs
+        if (response == null) throw new BLException("response is null");
+
         logger.debug("Received external response: {}", response);
 
         saveLoanAccount(response);
 
         // buisness logic to chk if emistatus is  paid or not
 
-        if( response.getEmiDetails() != null && !response.getEmiDetails().isEmpty() ){
+        if (response.getEmiDetails() != null && !response.getEmiDetails().isEmpty()) {
             for (EmiDetailDTO emi : response.getEmiDetails()) {
                 if (!emi.isPaidStatus()) {
 
